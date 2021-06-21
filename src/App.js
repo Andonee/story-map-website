@@ -1,14 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom'
+import Auth from './pages/Auth'
+import Maps from './pages/Maps'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			<Switch>
+				<Route path='/' exact>
+					<Auth />
+				</Route>
+				<Route path='/maps'>
+					<Maps />
+				</Route>
+			</Switch>
+		</div>
+	)
 }
 
-export default App;
+export default App

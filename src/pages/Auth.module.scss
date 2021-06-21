@@ -1,0 +1,11 @@
+.auth {
+	&_container {
+		display: flex;
+		height: 100vh;
+	}
+
+	&_img {
+		height: 100%;
+		filter: brightness(90%);
+	}
+}
