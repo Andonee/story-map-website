@@ -12,6 +12,9 @@
 		align-items: center;
 		margin-top: 10%;
 		width: 50%;
+		border: 1px solid #848282;
+    padding: 100px;
+		box-shadow: 2px 1px 3px 0px #848282;
 	}
 
 	&_welcome {
@@ -62,6 +65,7 @@
 				-webkit-box-shadow: 3px 5px 5px 0px #474747;
 				box-shadow: 1px 2px 5px 0px #474747;
 				margin-bottom: 10px;
+				transition: all .3s;
 
 				&:focus,
 				&:active {
@@ -72,6 +76,8 @@
 
 				&:hover {
 					cursor: pointer;
+					background: #748afa;
+					transform: translateY(-3px)
 				}
 			}
 		}

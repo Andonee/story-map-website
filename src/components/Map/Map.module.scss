@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 1px 3px 0px #848282;
+  border: 1px solid #848282;
+  width: 350px;
+  // align-items: center;
+  margin: 20px;
+  padding-top: 5px;
+  transition: all .3s;
+
+  &_img {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  &_info {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  &_title {
+    margin-left: 10px;
+  }
+
+  &_description {
+    margin-left: 10px;
+    font-size: 14px;
+    height: 100px;
+    max-height: 100px;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+}
