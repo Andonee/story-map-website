@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Auth from './pages/Auth'
 import Maps from './pages/Maps'
@@ -10,14 +10,16 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-				<Route path='/' exact>
+				<Route path='/story-account/' exact>
 					<Auth />
 				</Route>
-				{authContext.isLoggedIn &&<Route path='/maps/:user'>
-					<Maps />
-				</Route>}
-				<Route path='*'>
-					<Redirect to='/' />
+				{authContext.isLoggedIn && (
+					<Route path='/story-account/maps/:user'>
+						<Maps />
+					</Route>
+				)}
+				<Route path='/story-account/*'>
+					<Redirect to='/story-account/' />
 				</Route>
 			</Switch>
 		</div>

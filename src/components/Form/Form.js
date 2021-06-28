@@ -2,7 +2,9 @@ import { useState, useRef, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import Title from '../Title/Title'
 import { useHistory } from 'react-router-dom'
-import jwt_decode from "jwt-decode"
+import jwt_decode from 'jwt-decode'
+import { httpRequest } from '../../utils/http-request'
+import { BaseUrl } from '../../utils/baseUrl'
 
 import styles from './Form.module.scss'
 
@@ -13,7 +15,6 @@ const Form = () => {
 	const authContext = useContext(AuthContext)
 
 	const loginRef = useRef()
-	const emailRef = useRef()
 	const passwordRef = useRef()
 
 	const history = useHistory()
@@ -26,56 +27,50 @@ const Form = () => {
 	const onSubmitHandler = async e => {
 		e.preventDefault()
 
+		debugger
+
 		// This is a demo app (temporary) so there is no validation
-		const enteredLogin = !isLogin && loginRef.current.value
-		const enteredEmail = emailRef.current.value
+		const enteredLogin = loginRef.current.value
 		const enteredPassword = passwordRef.current.value
 
 		try {
 			let url
 			if (isLogin) {
-				url = 'http://localhost:5001/login'
+				url = `${BaseUrl}/api/login`
 			} else {
-				url = 'http://localhost:5001/register'
+				url = `${BaseUrl}/api/signup`
 			}
-			const request = await fetch(url, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					user: enteredLogin,
-					email: enteredEmail || '',
-					password: enteredPassword,
-				}),
+			const request = await httpRequest(url, 'POST', {
+				user: enteredLogin || '',
+				password: enteredPassword,
 			})
+
+			console.log(request)
 
 			if (request.ok) {
 				setErrorMessage('')
 				const data = await request.json()
-				authContext.login(data)
+				authContext.login(data.token)
 
-				const {sub: userId} = jwt_decode(data.accessToken)
-				console.log('userId', userId)
-				fetch(`http://localhost:5001/users/${userId}`)
-				.then(response => {
-					if(response.ok){
-						const data = response.json()
-						return data
-					}else {
-						throw new Error()
-					}
-				})
-				.then(data => {
-
-					console.log(data)
-					authContext.user(data.user)
-					history.replace(`/maps/${data.user}`)
-				})
-				.catch(err => console.log(err))
-
+				// const { sub: userId } = jwt_decode(data.accessToken)
+				console.log('userId', data.user, 'token', data.token)
+				// fetch(`http://localhost:5001/users/${data.user}`)
+				// 	.then(response => {
+				// 		if (response.ok) {
+				// 			const data = response.json()
+				// 			return data
+				// 		} else {
+				// 			throw new Error()
+				// 		}
+				// 	})
+				// .then(data => {
+				console.log(data)
+				authContext.user(data.user)
+				history.replace(`/story-account/maps/${data.user}`)
+				// })
+				// .catch(err => console.log(err))
 			} else {
-				request.json().then(data => setErrorMessage(data))
+				request.json().then(data => setErrorMessage(data.message))
 				throw new Error('data')
 			}
 		} catch (err) {
@@ -88,35 +83,29 @@ const Form = () => {
 			<Title />
 
 			<section className={styles.form_section}>
-				<h1 className={styles.form_welcome}>Welcome to Story Map</h1>
+				<h1 className={styles.form_welcome}>Witamy na Story Map</h1>
 				<form className={styles.form_form} onSubmit={onSubmitHandler}>
-				{!isLogin &&	<input
+					<input
 						type='text'
 						id='login'
 						placeholder='Login'
 						className={styles.form_form_input}
 						ref={loginRef}
 						required
-					/>}
-				<input
-						type='email'
-						id='email'
-						placeholder='email'
-						className={styles.form_form_input}
-						ref={emailRef}
 					/>
+
 					<input
 						type='password'
 						id='password'
-						placeholder='password'
+						placeholder='Hasło'
 						className={styles.form_form_input}
 						ref={passwordRef}
 					/>
 					<p className={styles.form_form_error}>{errorMessage}</p>
 					<div className={styles.form_form_actions}>
-						<button>{!isLogin ? 'Create new account' : 'Login'}</button>
+						<button>{!isLogin ? 'Utwórz nowe konto' : 'Zaloguj'}</button>
 						<button onClick={onActionChangeHandler}>
-							{isLogin ? 'Switch to create new account' : 'Switch to login'}
+							{isLogin ? 'Utwórz konto' : 'Przełącz do logowania'}
 						</button>
 					</div>
 				</form>

@@ -1,42 +1,92 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 1px 3px 0px #848282;
-  border: 1px solid #848282;
-  width: 350px;
-  // align-items: center;
-  margin: 20px;
-  padding-top: 5px;
-  transition: all .3s;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 2px 1px 3px 0px #848282;
+	border: 1px solid #848282;
+	width: 350px;
+	// align-items: center;
+	margin: 20px;
+	padding-top: 30px;
+	transition: all 0.3s;
+	border-radius: 2%;
+	position: relative;
 
-  &_img {
-    width: 300px;
-    margin: 0 auto;
-  }
+	&_closeBtn {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		background: none;
+		border: none;
+		transition: all 0.3s;
 
-  &_info {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
-    margin: 0 auto;
-    font-size: 14px;
-  }
+		&:hover {
+			cursor: pointer;
+			background: rgb(231, 228, 228);
+		}
+	}
+	&_imgContainer {
+		position: relative;
+	}
 
-  &_title {
-    margin-left: 10px;
-  }
+	&_img {
+		opacity: 1;
+		display: block;
+		width: 100%;
+		height: auto;
+		transition: 0.3s ease;
+		backface-visibility: hidden;
+	}
 
-  &_description {
-    margin-left: 10px;
-    font-size: 14px;
-    height: 100px;
-    max-height: 100px;
-    overflow: auto;
-    overflow-x: hidden;
-  }
+	&_imgInfoWrapper {
+		transition: 0.3s ease;
+		opacity: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		text-align: center;
+	}
 
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-5px);
-  }
+	&_imgInfo {
+		background-color: #617bff;
+		color: white;
+		font-size: 16px;
+		padding: 16px 32px;
+	}
+
+	&_imgContainer:hover &_imgInfoWrapper {
+		opacity: 1;
+		cursor: pointer;
+	}
+
+	&_imgContainer:hover &_img {
+		filter: brightness(50%);
+		cursor: pointer;
+	}
+
+	&_info {
+		display: flex;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
+		font-size: 14px;
+	}
+
+	&_title {
+		margin-left: 10px;
+	}
+
+	&_description {
+		margin-left: 10px;
+		font-size: 14px;
+		height: 100px;
+		max-height: 100px;
+		overflow: auto;
+		overflow-x: hidden;
+	}
+
+	&:hover {
+		transform: translateY(-5px);
+	}
 }

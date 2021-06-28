@@ -1,27 +1,67 @@
 .Maps {
-  display: flex;
-  flex-wrap: wrap;
-  // justify-content: space-evenly;
-  width: 90%;
-  height: 100%;
-  margin-top: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	// justify-content: space-evenly;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	height: 100%;
+	margin-top: 100px;
 
-  &_logoutBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 100px;
-    height: 25px;
-    background: #617bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 2px 1px 3px 0px #848282;
-    transition: all .3s;
+	&_logoutBtn {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		width: 100px;
+		height: 40px;
+		background: #617bff;
+		color: #fff;
+		border: none;
+		border-radius: 3px;
+		box-shadow: 2px 1px 3px 0px #848282;
+		transition: all 0.3s;
 
-    &:hover {
-      cursor: pointer;
-      background: #748afa;
-    }
-  }
+		&:hover {
+			cursor: pointer;
+			background: #748afa;
+		}
+	}
+
+	&_storyMap {
+		position: fixed;
+		top: 70px;
+		right: 20px;
+		width: 100px;
+		height: 40px;
+		background: #617bff;
+		color: #fff;
+		border: none;
+		border-radius: 3px;
+		box-shadow: 2px 1px 3px 0px #848282;
+		transition: all 0.3s;
+
+		&:hover {
+			cursor: pointer;
+			background: #748afa;
+		}
+	}
+
+	&_timeline {
+		position: fixed;
+		top: 120px;
+		right: 20px;
+		width: 100px;
+		height: 40px;
+		background: #617bff;
+		color: #fff;
+		border: none;
+		border-radius: 3px;
+		box-shadow: 2px 1px 3px 0px #848282;
+		transition: all 0.3s;
+
+		&:hover {
+			cursor: pointer;
+			background: #748afa;
+		}
+	}
 }
